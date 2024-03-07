@@ -6,6 +6,8 @@
   <% end %>
 </ul>
 
-<p>
-  <a href="/places/new">New place</a>
-</p>
+<% if session[:user_id] %>
+  <p>
+    <a href="/places/new">New place</a>
+  </p>
+<% end %>
