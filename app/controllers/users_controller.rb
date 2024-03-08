@@ -13,10 +13,11 @@ class UsersController < ApplicationController
       @user["email"] = params["email"]
       @user["password"] = BCrypt::Password.create(params["password"])
       @user.save
-      redirect_to "/users/#{@user["id"]}"
-    else 
-    flash["notice"] = "Successful sign-up ."
+      flash["notice"] = "Successful sign-up."
       redirect_to "/login"
+    else 
+    flash["notice"] = "Use another email."
+      redirect_to "/signup"
     end 
   end
 end
