@@ -2,17 +2,29 @@
 
 <% if session[:user_id] %>
   <p>
-    <a href="/entries/new?place_id=<%= @place["id"] %>">New Posts</a>
+    <a href="/entries/new?place_id=<%= @place["id"] %>" class="link-success""> New Posts</a>
   </p>
 
 <h2>My Entries</h2>
-<% for entry in @entries %>
-  <h3><%= entry["title"] %></h3>
-  <h4><%= entry["occurred_on"] %></h4>
-  <p><%= entry["description"] %></p>
+<div class="container overflow-hidden text-center">
+<div class="row gx-5">
+  <% for entry in @entries %>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="p-3">
+        <h3><%= entry["title"] %></h3>
+        <h4><%= entry["occurred_on"] %></h4>
+        <p><%= entry["description"] %></p>
+        <% if entry.uploaded_image.attached? %>
+          <%# use url_for(post.uploaded_image) as attached file's url %>
+          <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid">
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
-<% end %>
+</div>
+</div>
 
 <p>
-  <a href="/places">Back to All Places</a>
+  <a href="/places" class="link-success">Back to All Places</a>
 </p>
